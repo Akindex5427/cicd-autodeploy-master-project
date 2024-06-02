@@ -4,12 +4,7 @@
   remote_user: root
   tasks:
 #    - name: Copy the files to remote server
-#      shell: scp -r /var/lib/jenkins/workspace/ansible-jenkins-pipeline/ root@3.22.6.214:~/project/
-
-    - name: Removing Docker Image
-      docker_image:
-        name: php:v1.0
-        state: absent  
+#      shell: scp -r /var/lib/jenkins/workspace/ansible-jenkins-pipeline/ root@3.22.6.214:~/project
 
     - name: Stopping the Container
       docker_container:
@@ -23,6 +18,11 @@
         image: php:v1.0
         state: absent
 
+    - name: Removing Docker Image
+      docker_image:
+        name: php:v1.0
+        state: absent  
+        
     - name: Building Docker Image
       docker_image:   
         name: php:v1.0
