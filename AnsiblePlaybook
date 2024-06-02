@@ -1,3 +1,4 @@
+  GNU nano 7.2                                                         deployment.yaml                                                                   
 - name: Build and Deploy Docker Container
   hosts: dockerservers
   gather_facts: false
@@ -9,23 +10,23 @@
     - name: Stopping the Container
       docker_container:
         name: php-container
-        image: php:v1.0
+        image: devopsedu/webapp
         state: stopped
 
     - name: Removing the Container
       docker_container:
         name: php-container
-        image: php:v1.0
+        image: devopsedu/webapp
         state: absent
 
     - name: Removing Docker Image
       docker_image:
         name: php:v1.0
-        state: absent  
-        
+        state: absent 
+
     - name: Building Docker Image
-      docker_image:   
-        name: php:v1.0
+      docker_image:
+        name: devopsedu/webapp
         source: build
         build:
           path: ~/project/
@@ -34,7 +35,7 @@
     - name: Creating the Container
       docker_container:
         name: php-container
-        image: php:v1.0
+        image: devopsedu/webapp
         ports:
           - "80:80"
         state: present
