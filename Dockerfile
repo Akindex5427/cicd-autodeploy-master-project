@@ -1,6 +1,7 @@
-FROM php:8.2-cli
-COPY . /usr/src/myapp
-WORKDIR /usr/src/myapp
+FROM devopsedu/webapp
+COPY . /var/www/html
+RUN rm /var/www/html/index.html
+CMD apachectl -D FOREGROUND
 
 #FROM php:alpine
 #WORKDIR /usr/src/myapp
